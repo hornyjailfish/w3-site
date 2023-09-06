@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <title>Deno+Hono+HTMX</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://unpkg.com/htmx.org@1.9.5"
+    integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <script>
+    function w3_open() {
+      document.getElementById("left-sidebar").style.display = "block";
+      // document.getElementById("topbarId").style.marginLeft = "10%";
+    }
+
+    function w3_close() {
+      // document.getElementById("topbarId").style.marginLeft = "0px";
+      document.getElementById("left-sidebar").style.display = "none";
+    }
+  </script>
+
+  <header class="w3-bluegray w3-top " id="topbarId">
+    <div class=" w3-container w3-bar w3-gray w3-card-4 w3-large">
+      <!-- <a href=" #" class="w3-bar-item w3-button" hx-get="/home" hx-trigger="click" hx-target="#left-sidebar" -->
+      <!--   hx-swap="innerHTML" onclick="w3_open()">&#9776;</a> -->
+      <a href="#" class="w3-bar-item w3-button">Home</a>
+      <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      <form name="q" class="search-bar" hx-post="/search" hx-prompt="Search.." hx-swap="outerHTML">
+        <input type="submit" class="w3-bar-item w3-button w3-green w3-right">
+        <input type="search" class="w3-bar-item w3-input w3-right" placeholder="Search..">
+      </form>
+    </div>
+  </header>
+
+  <div class="w3-row" style="margin-top:3em;">
+    <div class="w3-quater w3-sidebar w3-grey w3-border-right " id="left-sidebar" hx-trigger="load" hx-get="/left">
+    </div>
+    <div class="w3-hide w3-rest w3-light-blue w3-sidebar w3-border-left " id="right-sidebar" style="right:0"
+      hx-trigger="load" hx-get="/right">
+    </div>
+
+    <!-- INFO: central content -->
+    <div class="w3-hide" hx-trigger="load" hx-get="/content" hx-swap="outerHTML">
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
