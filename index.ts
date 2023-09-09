@@ -5,7 +5,7 @@ import {
   serveStatic,
 } from "https://deno.land/x/hono@v3.5.5/middleware.ts";
 
-import search from "./search.tsx";
+import search from "./src/search.tsx";
 const app = new Hono();
 app.use("*", logger());
 app.use("/static/*", serveStatic({ root: "./" }));
