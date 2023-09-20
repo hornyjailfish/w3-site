@@ -10,9 +10,9 @@
     integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/htmx.org/dist/ext/class-tools.js"></script>
-
+  <!-- <script src="https://unpkg.com/htmx.org/dist/ext/loading-states.js"></script> -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link href="css/style.css" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet">
 </head>
 
 <body class>
@@ -45,7 +45,7 @@
       // document.getElementById("left-sidebar").style.display = "none";
     }
   </script>
-
+  <!-- TODO: refactor this shit and -->
   <header class="w3-bluegray w3-top " id="topbarId">
     <div class=" w3-container w3-bar w3-gray w3-card-4 w3-large">
       <!-- <a href=" #" class="w3-bar-item w3-button" hx-get="/home" hx-trigger="click" hx-target="#left-sidebar" -->
@@ -53,16 +53,21 @@
       <a href="#" class="w3-bar-item w3-button">Home</a>
       <a href="#" class="w3-bar-item w3-button">Link 2</a>
       <!-- hx-post="/search" hx-prompt="Search.." hx-swap="outerHTML" -->
-      <form hx-boost="true" hx-get="/search" hx-target="#search-result" hx-swap="innerHTML"
-        hx-on::after-request="w3_open()" class="search-bar">
-        <button type="submit" class="w3-bar-item w3-button w3-light-blue w3-right">Поиск</button>
-        <input type="search" name="q" id="search-input" class="w3-bar-item w3-input w3-right w3-light-gray"
-          placeholder="Search..">
-      </form>
+      <div  class="w3-right w3-container" >
+        <form  hx-indicator="#indicator" hx-boost="true" hx-get="/search" hx-target="#search-result" hx-trigger="submit" hx-swap="innerHTML" 
+          hx-on::after-request=" w3_open()" class="search-bar w3-right">
+            <button type="submit"  class="w3-bar-item w3-text-light-gray w3-button w3-light-blue w3-opacity"  hx-indicator="#indicator" data-loading-disable >
+              Go
+              <img id="indicator" class="htmx-indicator" data-loading-class-remove="w3-hide" data-loading src="/static/three-dots.svg" width="40">
+            </button>
+            <input required type="search" name="q" id="search-input"  class="w3-opacity w3-bar-item w3-input w3-light-gray" data-loading-disable
+              placeholder="Search..">
+        </form>
+      </div>
     </div>
   </header>
 
-  <div class="w3-sidebar w3-stretch w3-pale-blue w3-border-right" style="width: 10%;" id="left-sidebar"
+  <div class="w3-sidebar w3-stretch w3-pale-blue w3-border-right" style="width: 15%;" id="left-sidebar"
     hx-trigger="load" hx-get="/left">
   </div>
 
@@ -72,7 +77,7 @@
     <div id="search-result" class="w3-panel w3-margin-top"></div>
   </div>
 
-  <div class="w3-row-padding w3-main w3-mobile " style="margin-top:3em;margin-left: 10%;">
+  <div class="w3-row-padding w3-main w3-mobile " style="margin-top:3em;margin-left: 15%;">
     <!-- INFO: central content -->
     <div class="w3-col w3-center" style="" hx-trigger="load" hx-get="/content" hx-swap="innerHTML">
     </div>

@@ -1,6 +1,8 @@
 {
   "deno.enablePaths": [
-    "./"
+    "./",
+    "./src",
+    "./static"
   ],
   "deno.enable": true,
   "editor.inlayHints.enabled": "off"

@@ -6,4 +6,16 @@ main {
   margin-top: 5em;
   margin-left: 10%;
 }
+/* [data-loading] { */
+/*   display: none; */
+/* } */
 
+.htmx-indicator{
+    display:none;
+}
+.htmx-request #indicator{
+    display:inline;
+}
+.htmx-request#indicator{
+    display:inline;
+}
