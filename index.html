@@ -10,6 +10,7 @@
     integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/htmx.org/dist/ext/class-tools.js"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
   <!-- <script src="https://unpkg.com/htmx.org/dist/ext/loading-states.js"></script> -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link href="./css/style.css" rel="stylesheet">
@@ -67,8 +68,10 @@
     </div>
   </header>
 
-  <div class="w3-sidebar w3-stretch w3-pale-blue w3-border-right" style="width: 15%;" id="left-sidebar"
-    hx-trigger="load" hx-get="/left">
+  <div class="w3-sidebar w3-container w3-stretch w3-pale-blue w3-border-right" style="width: 15%;" id="left-sidebar"
+    hx-trigger="load" hx-get="/left"
+    hx-ext="ws" ws-connect="ws://localhost:1880/ws/reciever"  onbeforeunload="closeWebSocket()"
+    >
   </div>
 
   <div class="w3-sidebar w3-container w3-animate-right w3-hide w3-pale-blue w3-border-left" id="right-sidebar"
@@ -81,11 +84,31 @@
     <!-- INFO: central content -->
     <div class="w3-col w3-center" style="" hx-trigger="load" hx-get="/content" hx-swap="innerHTML">
     </div>
-    <!-- <div class="w3-container w3-animate-right w3-hide w3-rest w3-light-blue w3-sidebar w3-border-left " id="right-sidebar" -->
-    <!--   style="right:0"> -->
-    <!-- </div> -->
 
   </div>
+<script>
+document.addEventListener('htmx:wsConnecting', function (event) {
+});
+
+function closeWebSocket() {
+  var ws = document.getElementById("left-sidebar").ws;
+  ws.close();
+}
+
+document.addEventListener("htmx:wsOpen", function(event) {
+  // sends sync event to timers after opening socket 
+  var socket = event.detail.socketWrapper;
+  socket.send("sync",event.detail.elt);
+});
+
+document.addEventListener('htmx:wsError', function (event) {
+  console.error('WebSocket connection error:', event.detail.elt);
+});
+
+document.addEventListener("htmx:wsBeforeMessage", (event)=>{
+  // console.log(event.detail.message);
+});
+</script>
 
 </body>
 

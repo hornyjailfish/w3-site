@@ -38,21 +38,16 @@ try {
     // search.fire();
     throw new MeiliSearchError("Can't create search client",503)
 }
-
   const health = await search_client.health();
-  if (!health && health.status !== "available") {
+  if (!health){
     throw new MeiliSearchApiError("MeiliSearch not available right now!",100);
   }
   // if (search_client.health().status === "") {}
   // An index is where the documents are stored.
-
   // const task = JSON.parse(response);
     index = await search_client.index("rent");
     const response = await index.addDocuments(db, { primaryKey: "uid" });
     const status = await search_client.getTask(response.taskUid);
-
-
-
   // const e = error;
   // search.all("*",async (_,next)=> {await next()})
   search.use("*", async (c,next) => {
@@ -65,11 +60,12 @@ try {
       }
     if (!index) {
       throw new MeiliSearchApiError();
-
     }
-      // BUG: might be recursive page 1 
+// BUG: might be recursive page 1 
     search_results = await index.search(search_query,{hitsPerPage:80, page : page});
+
   // INFO: result format
+
   //   {
   //    hits: [
   //   ],
@@ -80,6 +76,7 @@ try {
   //    totalPages
   //    totalHits 
   //   }
+
       let Result = ()=>html``;
       let Header = memo(()=>html``);
       if (search_results.totalHits === 0 ) {
