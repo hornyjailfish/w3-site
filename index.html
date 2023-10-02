@@ -16,7 +16,7 @@
   <link href="./css/style.css" rel="stylesheet">
 </head>
 
-<body class>
+<body >
   <script>
     function w3_open() {
       // document.getElementById("right-sidebar").style.display = "block";
@@ -68,9 +68,9 @@
     </div>
   </header>
 
-  <div class="w3-sidebar w3-container w3-stretch w3-pale-blue w3-border-right" style="width: 15%;" id="left-sidebar"
+  <div class="w3-sidebar w3-container w3-pale-blue w3-border-right" style="width: 15%;" id="left-sidebar"
     hx-trigger="load" hx-get="/left"
-    hx-ext="ws" ws-connect="ws://localhost:1880/ws/reciever"  onbeforeunload="closeWebSocket()"
+     hx-ext="ws" ws-connect="ws://localhost:1880/ws/reciever"  onbeforeunload="closeWebSocket()"
     >
   </div>
 
@@ -87,27 +87,29 @@
 
   </div>
 <script>
-document.addEventListener('htmx:wsConnecting', function (event) {
-});
-
-function closeWebSocket() {
-  var ws = document.getElementById("left-sidebar").ws;
-  ws.close();
-}
-
-document.addEventListener("htmx:wsOpen", function(event) {
-  // sends sync event to timers after opening socket 
-  var socket = event.detail.socketWrapper;
-  socket.send("sync",event.detail.elt);
-});
-
-document.addEventListener('htmx:wsError', function (event) {
-  console.error('WebSocket connection error:', event.detail.elt);
-});
-
-document.addEventListener("htmx:wsBeforeMessage", (event)=>{
-  // console.log(event.detail.message);
-});
+// document.addEventListener('htmx:wsConnecting', function (event) {
+//   console.log("Connecting to nodered");
+// });
+//
+// function closeWebSocket() {
+//   var ws = document.getElementById("left-sidebar").ws;
+//   ws.close();
+// }
+//
+// document.addEventListener("htmx:wsOpen", function(event) {
+//   // sends sync event to timers after opening socket 
+//   console.log("OPENED");
+//   // var socket = event.detail.socketWrapper;
+//   // socket.send('{"msg":"sync","all":"true"}',event.detail.elt);
+// });
+//
+// document.addEventListener('htmx:wsError', function (event) {
+//   console.error('WebSocket connection error:', event.detail.elt);
+// });
+//
+// document.addEventListener("htmx:wsBeforeMessage", (event)=>{
+//   // console.log(event.detail.message);
+// });
 </script>
 
 </body>

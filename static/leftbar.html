@@ -1,6 +1,6 @@
-<div id="room06" hx-get="/red/switch/-1.6" hx-swap="innerHTML" ws-send hx-params="1.6" hx-trigger="ws:message"> 
+<div name="-1.6" id="room06" hx-swap="innerHTML" ws-send hx-vals='{"msg" : "sync"}' hx-get="/test" hx-trigger="htmx:wsOpen">
 </div>
-<div id="room16" hx-get="/red/switch/1.6" hx-swap="innerHTML" ws-send hx-params="1.6" hx-trigger="ws:message">
+<div name="1.6" id="room16" hx-swap="innerHTML" ws-send  hx-vals='{"msg" : "sync"}' hx-trigger="htmx:wsOpen, changed  delay:2s">
 </div>
-<div id="room26" hx-get="/red/switch/2.6" hx-swap="innerHTML" ws-send hx-params="1.6" hx-trigger="ws:message">
+<div name="1.6" id="room26" hx-swap="innerHTML" ws-send  hx-vals='{"msg" : "sync"}' hx-trigger="htmx:wsOpen, setteled">
 </div>
