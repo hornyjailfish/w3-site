@@ -5,10 +5,9 @@ import {
   cors,
   html,
   jsx,
-  memo,
 } from "https://deno.land/x/hono@v3.5.5/middleware.ts";
 import { Hono } from "https://deno.land/x/hono@v3.5.5/mod.ts";
-import { DOMParser } from 'https://deno.land/x/deno_dom/deno-dom-wasm.ts';
+
 type Variables = {
   status: Data
 }
@@ -60,11 +59,6 @@ function isAnyFieldUndefined(obj: Data): boolean {
 
 app.post("/switch/:room", async (c) => {
   const  target = c.req.param("room")
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(await c.req.text(), "text/html");
-  const el = doc.getElementById("left-sidebar");
-  console.log(el);
-  el.ws.send("TEST TEST TEST");
 
   const  {state,status,time} = c.req.query();
   let data: Data = {
@@ -98,8 +92,7 @@ app.post("/switch/:room", async (c) => {
     <p className="w3-opacity w3-cell w3-container">${time == 0? "": time}</p>
   </li>
       `};
+
   return c.html(<Room {...data}/>,200);
 });
-
-
 export default app;
