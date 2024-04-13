@@ -1,4 +1,5 @@
 * {
+    font-size: reset;
 
 }
 
@@ -12,9 +13,6 @@ main {
 
 .htmx-indicator{
     display:none;
-}
-.htmx-request #indicator{
-    display:inline;
 }
 .htmx-request#indicator{
     display:inline;

@@ -10,14 +10,14 @@
         integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/class-tools.js"></script>
+    <script src="https://unpkg.com/htmx.org/dist/ext/sse.js"></script>
     <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
     <!-- <script src="https://unpkg.com/htmx.org/dist/ext/loading-states.js"></script> -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="./css/style.css" rel="stylesheet">
 </head>
 
-<body>
-    <script src="https://cdn.jsdelivr.net/npm/d3"></script>
+<body class="">
     <script>
         function w3_open() {
             // document.getElementById("right-sidebar").style.display = "block";
@@ -26,55 +26,69 @@
 
             // INFO: animation recalc
             let main = document.body.querySelector(".w3-main");
-            main.classList.remove("w3-animate-left")
+            let view = document.body.querySelector(".ol-viewport");
+            // main.classList.remove("w3-animate-left")
             main.offsetWidth
-            main.style.marginRight = "30%";
-            main.classList.add("w3-animate-right")
+            // main.style.paddingRight = "30%";
+            // main.style.width = "70%";
+            view.offsetWidth
+            // view.style.width = "70%";
+            // main.classList.add("w3-animate-right")
+            // main.classList.add("w3-animate-opacity")
         }
 
         function w3_close() {
             // document.getElementById("topbarId").style.marginLeft = "0px";
-            let input_form = document.getElementById("search-input");
+            // let input_form = document.getElementById("search-input");
             let element = document.getElementById("right-sidebar");
             element.classList.toggle("w3-hide");
-            input_form.value = null;
+            // input_form.value = null;
             let main = document.body.querySelector(".w3-main");
-            // main.style.marginRight = "0";
-            main.classList.remove("w3-animate-right")
+            let view = document.body.querySelector(".ol-viewport");
+            // main.style.paddingRight = "0%";
+            // main.classList.remove("w3-animate-right")
             main.offsetWidth
-            main.style.marginRight = "0%";
-            main.classList.add("w3-animate-left")
+            // main.style.width = "100%";
+            view.offsetWidth
+            // view.style.width = "100%";
+            // main.classList.add("w3-animate-left")
+            // main.classList.add("w3-animate-opacity")
             // document.getElementById("left-sidebar").style.display = "none";
         }
+
+        function toggle_search(flag) {
+            let search_form = document.getElementById("search-form");
+            if (flag) {
+                // console.log("available");
+                // search_form.classList.remove("disabled");
+                search_form.classList.remove("w3-disabled");
+            }
+            else {
+                // console.log("not available");
+                // search_form.classList.add("w3-hide");
+                // search_form.classList.add("disabled");
+                search_form.classList.add("w3-disabled");
+            }
+        }
+
+        htmx.on("htmx:sseMessage", (mes) => {
+            switch (mes.detail.type) {
+                case "MeiliStatus":
+                    if (mes.detail.data == "available") {
+                        toggle_search(true);
+                    }
+                    else {
+                        toggle_search(false)
+                    }
+                    break;
+
+                default: break;
+            }
+        });
     </script>
     <!-- TODO: refactor this shit and -->
-    <header class="w3-bluegray w3-top " id="topbarId">
-        <div class=" w3-container w3-bar w3-gray w3-card-4 w3-large">
-            <!-- <a href=" #" class="w3-bar-item w3-button" hx-get="/home" hx-trigger="click" hx-target="#left-sidebar" -->
-            <!--   hx-swap="innerHTML" onclick="w3_open()">&#9776;</a> -->
-            <a href="#" class="w3-bar-item w3-button">Home</a>
-            <a href="#" class="w3-bar-item w3-button">Link 2</a>
-            <!-- hx-post="/search" hx-prompt="Search.." hx-swap="outerHTML" -->
-            <div class="w3-right w3-container">
-                <form hx-indicator="#indicator" hx-get="/search" hx-target="#search-result" hx-trigger="submit"
-                    hx-swap="innerHTML" hx-on::after-request=" w3_open()" class="search-bar w3-right">
-                    <button type="submit" class="w3-bar-item w3-text-light-gray w3-button w3-light-blue w3-opacity"
-                        hx-indicator="#indicator" data-loading-disable>
-                        Go
-                        <img id="indicator" class="htmx-indicator" data-loading-class-remove="w3-hide" data-loading
-                            src="/static/three-dots.svg" width="40">
-                    </button>
-                    <input required type="search" name="q" id="search-input"
-                        class="w3-opacity w3-bar-item w3-input w3-light-gray" data-loading-disable
-                        placeholder="Search..">
-                </form>
-            </div>
-        </div>
-    </header>
 
-    <div class="w3-sidebar w3-container w3-pale-blue w3-border-right" style="width: 15%;" id="left-sidebar"
-        hx-trigger="load" hx-get="/left" hx-ext="ws" ws-connect="ws://localhost:1880/ws/reciever"
-        onbeforeunload="closeWebSocket()">
+    <div class="w3-gray w3-top w3-bar w3-tiny" id="topbarId" hx-get="/topbar" hx-trigger="load">
     </div>
 
     <div class="w3-sidebar w3-container w3-animate-right w3-hide w3-pale-blue w3-border-left" id="right-sidebar"
@@ -83,8 +97,8 @@
         <div hx-swap-oob=true id="search-result" class="w3-panel w3-margin-top"></div>
     </div>
 
-    <div id="canvas" class="w3-row-padding w3-main" style="margin-top:3em;margin-left: 15%;height: 94vh;"
-        hx-trigger="load" hx-get="/svg" hx-swap="innerHTML">
+    <div id="canvas" class="w3-row-padding w3-main" style="margin-top:4%;margin-left: 0%;height: 94vh;">
+        <!-- hx-trigger="load" hx-get="/svg" hx-swap="innerHTML"> -->
         <!-- INFO: central content -->
         <!-- <div class="w3-col w3-center" style="height:100%;" hx-trigger="load" hx-get="/content" hx-swap="innerHTML"> -->
     </div>
