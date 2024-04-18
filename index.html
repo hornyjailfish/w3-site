@@ -17,7 +17,7 @@
     <link href="./css/style.css" rel="stylesheet">
 </head>
 
-<body class="">
+<body>
     <script>
         function w3_open() {
             // document.getElementById("right-sidebar").style.display = "block";
@@ -38,7 +38,7 @@
         }
 
         function w3_close() {
-            // document.getElementById("topbarId").style.marginLeft = "0px";
+            // document.getElementById("topbar").style.marginLeft = "0px";
             // let input_form = document.getElementById("search-input");
             let element = document.getElementById("right-sidebar");
             element.classList.toggle("w3-hide");
@@ -86,18 +86,20 @@
             }
         });
     </script>
-    <!-- TODO: refactor this shit and -->
-
-    <div class="w3-gray w3-top w3-bar w3-tiny" id="topbarId" hx-get="/topbar" hx-trigger="load">
+    <div class="w3-gray w3-top w3-bar w3-tiny" id="topbar" hx-get="/topbar" hx-trigger="load">
     </div>
 
-    <div class="w3-sidebar w3-container w3-animate-right w3-hide w3-pale-blue w3-border-left" id="right-sidebar"
-        style="right:0;width: 30%;">
+    <div class="w3-sidebar w3-container w3-animate-right w3-pale-blue w3-border-right" id="left-sidebar"
+        hx-get="/left"
+            hx-trigger="load">
+    </div>
+
+    <div class="w3-sidebar w3-container w3-animate-right w3-hide w3-pale-blue w3-border-left" id="right-sidebar">
         <div hx-on:click="w3_close()" class="w3-button w3-display-topleft w3-container w3-hover-red">&times;</div>
         <div hx-swap-oob=true id="search-result" class="w3-panel w3-margin-top"></div>
     </div>
 
-    <div id="canvas" class="w3-row-padding w3-main" style="margin-top:4%;margin-left: 0%;height: 94vh;">
+    <div id="canvas" class="w3-row-padding w3-main" >
         <!-- hx-trigger="load" hx-get="/svg" hx-swap="innerHTML"> -->
         <!-- INFO: central content -->
         <!-- <div class="w3-col w3-center" style="height:100%;" hx-trigger="load" hx-get="/content" hx-swap="innerHTML"> -->

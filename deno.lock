@@ -1,13 +1,15 @@
 {
   "version": "3",
   "redirects": {
+    "https://cdn.skypack.dev/-/geotiff@v2.1.3-XiUuyJgTAAAacz3e80uR/dist=es2019,mode=types/dist-node/logging.js": "https://cdn.skypack.dev/-/geotiff@v2.1.3-XiUuyJgTAAAacz3e80uR/dist=es2019,mode=types/dist-node/logging.d.ts",
     "https://cdn.skypack.dev/-/ol@v8.2.0-0ABJGOUITTEAABGICtN1/dist=es2019,mode=types/webgl.js": "https://cdn.skypack.dev/-/ol@v8.2.0-0ABJGOUITTEAABGICtN1/dist=es2019,mode=types/webgl.d.ts",
     "https://deno.land/x/hono/context.ts": "https://deno.land/x/hono@v4.1.3/context.ts",
     "https://deno.land/x/hono/helper.ts": "https://deno.land/x/hono@v4.1.3/helper.ts",
     "https://deno.land/x/hono/middleware.ts": "https://deno.land/x/hono@v4.1.3/middleware.ts",
     "https://deno.land/x/hono/mod.ts": "https://deno.land/x/hono@v4.1.3/mod.ts",
     "https://deno.land/x/hono/types.ts": "https://deno.land/x/hono@v4.1.3/types.ts",
-    "https://esm.sh/meilisearch": "https://esm.sh/meilisearch@0.38.0"
+    "https://esm.sh/meilisearch": "https://esm.sh/meilisearch@0.38.0",
+    "https://esm.sh/u8-mqtt/esm/deno/index.js": "https://esm.sh/u8-mqtt@0.6.3/esm/deno/index.js"
   },
   "remote": {
     "https://deno.land/std@0.150.0/media_types/_util.ts": "ce9b4fc4ba1c447dafab619055e20fd88236ca6bdd7834a21f98bd193c3fbfa1",
@@ -117,7 +119,19 @@
     "https://deno.land/x/hono@v4.1.3/validator/validator.ts": "480a8fd7f9c750fca3c8bd196d858bc928ad96f73318de5f13e7712176afd658",
     "https://deno.land/x/xhr@0.3.0/mod.ts": "094aacd627fd9635cd942053bf8032b5223b909858fa9dc8ffa583752ff63b20",
     "https://esm.sh/meilisearch@0.38.0": "f9e988a430d70ea72ede15dfbeb6eb5e9e73cf7c2c96df031de66fd426a207db",
+    "https://esm.sh/u8-mqtt@0.6.3/esm/deno/index.js": "d71769145b749d788030b3046c8f4419d81c614729cc8beaf7391b37f2fa4189",
     "https://esm.sh/v135/cross-fetch@3.1.8/denonext/polyfill.js": "a3333ee081de954d2729907889f382465a34a9450e145eeb3218379691fc1ef8",
-    "https://esm.sh/v135/meilisearch@0.38.0/denonext/meilisearch.mjs": "53c8460b5743597f0c8962da353c1d47c4f9b4012cb50343df4dc4fbcacf05a4"
+    "https://esm.sh/v135/meilisearch@0.38.0/denonext/meilisearch.mjs": "53c8460b5743597f0c8962da353c1d47c4f9b4012cb50343df4dc4fbcacf05a4",
+    "https://esm.sh/v135/u8-mqtt@0.6.3/denonext/esm/deno.js": "c07afa26e7ced468e84787fcaca3551ee10ea591bb0c041654b656e43739c56e",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/bytes.ts": "837629dbc730ed5b2c395c73ada8d487802d3ff23b01a4787f68cde0805f7138",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/check.ts": "2270f50fbdcf173dd6cecdbf2707cd24566f7bfb21c11c86e48d5c6893db5655",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/deno_tcp_connection.ts": "63694b4680e6d56dc73d4a2a6b4b47f35e12b752cbd5dded6282f6f1f6f503a4",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/mod_deno.ts": "901bb0db2aa67914f11c44e975cffe78aa29b94e6e387ead74a4080a9c9ae2aa",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/mod_iso.ts": "7a38ab9eecb616f8a00f94ad780b3f333e3a272cc3b620483fcfdf738b49d925",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/mqtt.ts": "dcaaa882c7823fa2d31e1fc1d32faeae5d1b309b1c49f0ad998696075315d21a",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/mqtt_client.ts": "aef7b95da2d36c5711a92694e94b7f3faac718aac43cff14109a292caae32b70",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/mqtt_connection.ts": "6b299c8b81d657750594dd7da80cefa746a9a21da7f134db00e33a44eb1f5aef",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/mqtt_messages.ts": "5da848c2bb2f39f54b998c84cbbaefd4184987e7ffce2ded68774498a61630ba",
+    "https://raw.githubusercontent.com/skymethod/denoflare/denoflare-mqtt-v0.0.2/common/mqtt/web_socket_connection.ts": "090267fc7f5fe612714d543c96672586cd935ab564be174e2136979284c69397"
   }
 }

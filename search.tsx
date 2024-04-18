@@ -347,20 +347,5 @@ search.onError((e: Error, c ) => {
 			return c.json(e, 404);
 	}
 });
-// } finally {
-// 	search.onError((e: any, c: Context) => {
-// 		console.error(e);
-// 		switch (e.constructor) {
-// 			case MeiliSearchError:
-// 				return c.json(e, 503);
-// 			case MeiliSearchApiError:
-// 				return c.json(e, e.httpStatus);
-// 			default:
-// 				return c.json(e, 500);
-// 		}
-// 	});
-// }
-// search.all("*",logger());
-// console.log(inspectRoutes(search));
-// showRoutes(search);
+
 export default search;

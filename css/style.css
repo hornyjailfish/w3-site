@@ -1,11 +1,29 @@
 * {
-    font-size: reset;
+    font-size: unset;
 
 }
 
-main {
-  margin-top: 5em;
-  margin-left: 10%;
+#right-sidebar {
+    right: 0;
+    width: 25%;
+    top: 6vh;
+}
+#left-sidebar {
+    top: 0%;
+    width: 10vw;
+}
+#topbar {
+    left: 10%
+}
+#topbar.w3-bar {
+    width: 90vw;
+    height: 6vh;
+}
+
+.w3-main#canvas {
+    height: 89vh;
+    margin-top: 6vh;
+    margin-left: 10%;
 }
 /* [data-loading] { */
 /*   display: none; */
